@@ -4,6 +4,7 @@ import axios from 'axios'
 import PagesLoader from '../Components/PagesLoader'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import UpdateProductModal from '../Components/UpdateProductModal'
+import { BASE_API_URL } from '../../Api.Config'
 
 
 export default function Product() {
@@ -12,7 +13,7 @@ export default function Product() {
   const [loader, setloader] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/get-all-product')
+    axios.get(`${BASE_API_URL}/api/get-all-product`)
       .then((json) => {
         setProduct(json.data.Product)
         setloader(false)
@@ -21,7 +22,7 @@ export default function Product() {
   }, [])
 
   const deleteProduct = (_id) => {
-    axios.delete('http://localhost:4000/api/delete-product', { data: { _id } })
+    axios.delete(`${BASE_API_URL}/api/delete-product`, { data: { _id } })
       .then(json => {
         setProduct(json.data.Product)
       })

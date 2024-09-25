@@ -6,7 +6,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import ModalLoader from './ModalLoader';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
+import { BASE_API_URL } from '../../Api.Config';
 
 function CategoryModal({ recalldata }) {
     const [show, setShow] = useState(false);
@@ -32,7 +32,7 @@ function CategoryModal({ recalldata }) {
                         CategoryName,
                         CategoryImage: url
                     }
-                    const URL = 'http://localhost:4000/api/create-category'
+                    const URL = `${BASE_API_URL}/api/create-category`
 
                     axios.post(URL, payload).then((json) => {
                         recalldata(json.data.Category)

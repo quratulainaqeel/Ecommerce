@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { BASE_API_URL } from '../../Api.Config'
 
 export default function Sigup() {
 
@@ -16,7 +17,7 @@ export default function Sigup() {
             email: email,
             password: password
         }
-        axios.get('http://localhost:4000/api/get-all-user')
+        axios.get(`${BASE_API_URL}/api/get-all-user`)
             .then((response) => {
                 const users = response.data.User;
 
@@ -38,7 +39,7 @@ export default function Sigup() {
                         password: password
                     };
 
-                    axios.post('http://localhost:4000/api/signup', payload)
+                    axios.post(`${BASE_API_URL}/api/signup`, payload)
                         .then(json => {
                             console.log(json.data);
 

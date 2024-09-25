@@ -11,6 +11,7 @@ import { Cartcontext } from '../Context/AddToCart/context';
 import PageLoaders from '../../Admin/Components/PagesLoader';
 import { GlobalContext } from '../../Context/Context';
 import { decodeToken } from 'react-jwt'
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function Product() {
 
@@ -28,7 +29,7 @@ export default function Product() {
   const { cart_state, cart_dispatch } = useContext(Cartcontext)
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/get-product-by-id?_id=${_id}`)
+    axios.get(`${BASE_API_URL}/api/get-product-by-id?_id=${_id}`)
       .then((json) => {
         setproduct(json.data.Product)
         setloader(false)
@@ -75,7 +76,7 @@ export default function Product() {
       review
     }
 
-    axios.post('http://localhost:4000/api/review-product', payload)
+    axios.post(`${BASE_API_URL}/api/review-product`, payload)
       .then(json => {
         const totalRating = json.data.Product.reviews.reduce((accumulator, review) => accumulator + review.rating, 0);
         const averageRating = (totalRating / json.data.Product.reviews.length).toFixed(1);
@@ -85,7 +86,7 @@ export default function Product() {
           rating: averageRating
         }
 
-        axios.put('http://localhost:4000/api/update-product', UpdateProductPayload).then((json) => {
+        axios.put(`${BASE_API_URL}/api/update-product`, UpdateProductPayload).then((json) => {
           const updatedProduct = json.data.Product.find(item => item._id === product._id);
           setproduct(updatedProduct);
 

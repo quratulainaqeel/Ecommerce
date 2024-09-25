@@ -9,6 +9,7 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import { Cartcontext } from '../Context/AddToCart/context';
 import Loader from '../Components/loader';
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function SearchingModal() {
 
@@ -24,7 +25,7 @@ export default function SearchingModal() {
     };
 
     const Handlesearching = () => {
-        axios.get(`http://localhost:4000/api/get-product-by-search/${search}`).then(json => setproducts(json.data.Product))
+        axios.get(`${BASE_API_URL}/api/get-product-by-search/${search}`).then(json => setproducts(json.data.Product))
         setModalShow(true);
         setloader(false)
     }

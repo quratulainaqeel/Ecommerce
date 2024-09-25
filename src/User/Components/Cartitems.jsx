@@ -8,6 +8,7 @@ import axios from 'axios'
 import ModalLoader from './ModalLoader'
 import Swal from 'sweetalert2'
 import Modal from 'react-bootstrap/Modal';
+import { BASE_API_URL } from '../../Api.Config'
 
 
 export default function Cartitems() {
@@ -83,7 +84,7 @@ export default function Cartitems() {
           customerEmail: user.email
         }
         console.log(payload)
-        axios.post('http://localhost:4000/api/create-order', payload).then((json) => {
+        axios.post(`${BASE_API_URL}/api/create-order`, payload).then((json) => {
           console.log(json.data);
           setloader(false)
           Swal.fire('Order Placed!', 'Your order has been placed successfully.', 'success');
@@ -106,7 +107,7 @@ export default function Cartitems() {
 
   const Trackorder = () => {
     setShow(true);
-    axios.get('http://localhost:4000/api/get-all-order').then(json => {
+    axios.get(`${BASE_API_URL}/api/get-all-order`).then(json => {
       const filteredOrders = json.data.orders.filter(order => order.customerEmail === user.email);
       settrackorder(filteredOrders);
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import PagesLoader from '../Components/PagesLoader'
 import { RiDeleteBin6Line } from 'react-icons/ri'
+import { BASE_API_URL } from '../../Api.Config'
 
 export default function Customer() {
 
@@ -9,7 +10,7 @@ export default function Customer() {
     const [loader, setloader] = useState(true)
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/get-all-user')
+        axios.get(`${BASE_API_URL}/api/get-all-user`)
             .then((json) => {
                 setuser(json.data.User)
                 setloader(false)
@@ -18,7 +19,7 @@ export default function Customer() {
     }, [])
 
     const deleteUser = (_id) => {
-        axios.delete('http://localhost:4000/api/delete-user', { data: { _id } })
+        axios.delete(`${BASE_API_URL}/api/delete-user`, { data: { _id } })
             .then(json => {
                 setuser(json.data.User)
             })

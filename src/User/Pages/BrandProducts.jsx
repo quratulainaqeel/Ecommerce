@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { Cartcontext } from '../Context/AddToCart/context';
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function BrandProducts() {
     const { BrandName } = useParams()
@@ -16,7 +17,7 @@ export default function BrandProducts() {
     const { cart_state, cart_dispatch } = useContext(Cartcontext)
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/get-product-by-brand?brand=${BrandName}`)
+        axios.get(`${BASE_API_URL}/api/get-product-by-brand?brand=${BrandName}`)
             .then((json) => setBrandProduct(json.data.Product)).catch((err) => console.log(err))
     }, [BrandName])
 

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { AiOutlineEdit } from 'react-icons/ai'
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { BASE_API_URL } from '../../Api.Config';
 
 
 export default function UpdateProductModal({ recalldata, productid, PRODUCT }) {
@@ -34,13 +35,13 @@ export default function UpdateProductModal({ recalldata, productid, PRODUCT }) {
         setcategory(PRODUCT.category)
         setdescription(PRODUCT.description)
 
-        axios.get('http://localhost:4000/api/get-all-brand').then((json) => {
+        axios.get(`${BASE_API_URL}/api/get-all-brand`).then((json) => {
             setBrandVal(json.data.Brand)
 
         })
             .catch((err) => console.log(err))
 
-        axios.get('http://localhost:4000/api/get-all-category')
+        axios.get(`${BASE_API_URL}/api/get-all-category`)
             .then((json) => {
                 setCategoryVal(json.data.Category)
                 setShow(true)
@@ -86,7 +87,7 @@ export default function UpdateProductModal({ recalldata, productid, PRODUCT }) {
                                 rating: 0
                             }
 
-                            axios.put('http://localhost:4000/api/update-product', payload).then((json) => {
+                            axios.put(`${BASE_API_URL}/api/update-product`, payload).then((json) => {
                                 recalldata(json.data.Product)
                                 setloader(false)
                                 handleClose()

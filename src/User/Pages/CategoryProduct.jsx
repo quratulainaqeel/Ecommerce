@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { Cartcontext } from '../Context/AddToCart/context';
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function CategoryProduct() {
 
@@ -17,7 +18,7 @@ export default function CategoryProduct() {
   const { cart_state, cart_dispatch } = useContext(Cartcontext)
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/api/get-product-by-category?category=${CategoryName}`)
+    axios.get(`${BASE_API_URL}/api/get-product-by-category?category=${CategoryName}`)
       .then((json) => setCategoryProduct(json.data.Product)).catch((err) => console.log(err))
   }, [CategoryName])
 

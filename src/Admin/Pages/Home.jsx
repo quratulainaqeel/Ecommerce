@@ -7,6 +7,7 @@ import { BsFillCartFill } from 'react-icons/bs'
 import { MdShoppingBasket } from 'react-icons/md'
 import { FaDollarSign, FaUserAlt } from 'react-icons/fa'
 import Chart from '../Components/Chart';
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function Home() {
 
@@ -18,7 +19,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/get-all-order')
+    axios.get(`${BASE_API_URL}/api/get-all-order`)
       .then((json) => {
         setorder(json.data.orders);
         setloader(false);
@@ -28,13 +29,13 @@ export default function Home() {
       })
       .catch((err) => console.log(err));
 
-    axios.get('http://localhost:4000/api/get-all-product')
+    axios.get(`${BASE_API_URL}/api/get-all-product`)
       .then((json) => {
         setProduct(json.data.Product)
       })
       .catch((err) => console.log(err))
 
-    axios.get('http://localhost:4000/api/get-all-user')
+    axios.get(`${BASE_API_URL}/api/get-all-user`)
       .then((json) => {
         setuser(json.data.User);
 

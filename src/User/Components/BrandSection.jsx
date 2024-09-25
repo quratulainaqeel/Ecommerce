@@ -2,13 +2,14 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, json } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function BrandSection() {
 
     const [brand, setbrand] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/get-all-brand').then(json => setbrand(json.data.Brand))
+        axios.get(`${BASE_API_URL}/api/get-all-brand`).then(json => setbrand(json.data.Brand))
     }, [])
 
     if (!brand) {

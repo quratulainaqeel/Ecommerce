@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import PagesLoader from '../Components/PagesLoader'
 import UpdateOrderModal from '../Components/UpdateOrderModal'
+import { BASE_API_URL } from '../../Api.Config'
 
 export default function Orders() {
   const [order, setorder] = useState([])
   const [loader, setloader] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/get-all-order')
+    axios.get(`${BASE_API_URL}/api/get-all-order`)
       .then((json) => {
         setorder(json.data.orders)
         setloader(false)

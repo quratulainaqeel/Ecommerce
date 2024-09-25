@@ -5,6 +5,7 @@ import PagesLoader from '../Components/PagesLoader'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import UpdateBrandModal from '../Components/UpdateBrandModal'
 import BrandModal from '../Components/BrandModal'
+import { BASE_API_URL } from '../../Api.Config'
 
 export default function Brand() {
 
@@ -12,7 +13,7 @@ export default function Brand() {
   const [loader, setloader] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/get-all-brand')
+    axios.get(`${BASE_API_URL}/api/get-all-brand`)
       .then((json) => {
         setbrand(json.data.Brand)
         setloader(false)
@@ -21,7 +22,7 @@ export default function Brand() {
   }, [])
 
   const deleteCategory = (_id) => {
-    axios.delete('http://localhost:4000/api/delete-brand', { data: { _id } })
+    axios.delete(`${BASE_API_URL}/api/delete-brand`, { data: { _id } })
       .then(json => {
         setbrand(json.data.Brand)
       })

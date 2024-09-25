@@ -8,6 +8,7 @@ import ModalLoader from './ModalLoader';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { BsPencil } from 'react-icons/bs'
+import { BASE_API_URL } from '../../Api.Config';
 
 
 export default function UpdateUserInfo() {
@@ -21,7 +22,7 @@ export default function UpdateUserInfo() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/api/get-user-by-id?_id=${user.id}`).then((json) => {
+        axios.get(`${BASE_API_URL}/api/get-user-by-id?_id=${user.id}`).then((json) => {
             setusername(json.data.User.username)
             setProfilePic(json.data.User.profile_pic)
         })
@@ -43,7 +44,7 @@ export default function UpdateUserInfo() {
         }
 
         const Config = {
-            url: 'http://localhost:4000/api/update-user',
+            url: `${BASE_API_URL}/api/update-user`,
             data: payload,
             method: "PUT"
         }

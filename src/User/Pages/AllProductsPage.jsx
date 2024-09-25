@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import { Cartcontext } from '../Context/AddToCart/context';
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function AllProductsPage() {
 
@@ -10,7 +11,7 @@ export default function AllProductsPage() {
   const { cart_state, cart_dispatch } = useContext(Cartcontext)
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/get-all-product").then((json) => setAllProducts(json.data.Product)).catch((err) => console.log(err))
+    axios.get(`${BASE_API_URL}/api/get-all-product`).then((json) => setAllProducts(json.data.Product)).catch((err) => console.log(err))
 
   }, [])
 

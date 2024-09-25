@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBorderAll } from '@fortawesome/free-solid-svg-icons';
 import { GlobalContext } from '../../Context/Context';
 import { Cartcontext } from '../Context/AddToCart/context';
+import { BASE_API_URL } from '../../Api.Config';
 
 
 export default function Navigationbar() {
@@ -30,11 +31,11 @@ export default function Navigationbar() {
   const handleShowBrands = () => setShowBrands(true);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/get-all-category').then(json => setCategories(json.data.Category));
+    axios.get(`${BASE_API_URL}/api/get-all-category`).then(json => setCategories(json.data.Category));
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/api/get-all-brand').then(json => setbrand(json.data.Brand));
+    axios.get(`${BASE_API_URL}/api/get-all-brand`).then(json => setbrand(json.data.Brand));
   }, []);
 
 

@@ -7,12 +7,13 @@ import Cart from '../Component/Cart'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons'
 import Navigationbar from '../Component/Navigationbar'
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function AllProductsPage() {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:4000http://localhost:4000/api/get-all-product").then((json) => setAllProducts(json.data.Product)).catch((err) => console.log(err))
+    axios.get(`${BASE_API_URL}/api/get-all-product`).then((json) => setAllProducts(json.data.Product)).catch((err) => console.log(err))
   }, [])
   
   return (

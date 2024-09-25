@@ -6,6 +6,7 @@ import ModalLoader from './ModalLoader';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AiOutlineEdit } from 'react-icons/ai'
+import { BASE_API_URL } from '../../Api.Config';
 
 
 export default function UpdateModal({ recalldata, categoryname }) {
@@ -29,7 +30,7 @@ export default function UpdateModal({ recalldata, categoryname }) {
                         CategoryName: categoryname,
                         CategoryImage: url
                     };
-                    axios.put('http://localhost:4000/api/update-category', payload)
+                    axios.put(`${BASE_API_URL}/api/update-category`, payload)
                         .then((json) => {
                             recalldata(json.data.Category);
                             setloader(false);

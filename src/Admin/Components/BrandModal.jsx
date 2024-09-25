@@ -6,8 +6,9 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import ModalLoader from './ModalLoader';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { BASE_API_URL } from '../../Api.Config';
 
-export default function BrandModal({recalldata}) {
+export default function BrandModal({ recalldata }) {
     const [show, setShow] = useState(false);
     const [BrandName, setBrandName] = useState('')
     const [BrandImage, setBrandImage] = useState(null)
@@ -31,7 +32,7 @@ export default function BrandModal({recalldata}) {
                         BrandName,
                         BrandImage: url
                     }
-                    const URL = 'http://localhost:4000/api/create-brand '
+                    const URL = `${BASE_API_URL}/api/create-brand `
 
                     axios.post(URL, payload).then((json) => {
                         recalldata(json.data.Brand)

@@ -4,6 +4,7 @@ import { Link, json } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { GlobalContext } from '../../Context/Context'
 import Cookies from 'js-cookie'
+import { BASE_API_URL } from '../../Api.Config'
 
 
 export default function Login() {
@@ -16,7 +17,7 @@ export default function Login() {
     const handleFormSubmission = (e) => {
         e.preventDefault();
 
-        axios.get('http://localhost:4000/api/get-all-user')
+        axios.get(`${BASE_API_URL}0/api/get-all-user`)
             .then((json) => {
                 const users = json.data.User;
 
@@ -37,7 +38,7 @@ export default function Login() {
                         password: password
                     }
 
-                    axios.post('http://localhost:4000/api/login', payload).then((json) => {
+                    axios.post(`${BASE_API_URL}/api/login`, payload).then((json) => {
                         Cookies.set('token', json.data.token);
                         dispatch({
                             type: "LOGIN",

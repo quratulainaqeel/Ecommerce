@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { json } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { BASE_API_URL } from '../../Api.Config';
 
 function ProductModal({ recalldata }) {
     const [show, setShow] = useState(false);
@@ -31,14 +32,14 @@ function ProductModal({ recalldata }) {
         setProductName("");
     }
     const handleShow = () => {
-        axios.get('http://localhost:4000/api/get-all-brand').then((json) => {
+        axios.get(`${BASE_API_URL}/api/get-all-brand`).then((json) => {
             setBrandVal(json.data.Brand)
            
 
         })
             .catch((err) => console.log(err))
 
-        axios.get('http://localhost:4000/api/get-all-category')
+        axios.get(`${BASE_API_URL}/api/get-all-category`)
             .then((json) => {
                 setCategoryVal(json.data.Category)
                
@@ -84,7 +85,7 @@ function ProductModal({ recalldata }) {
                                 description: description,
                                 rating: 0
                             }
-                            axios.post('http://localhost:4000/api/create-product', payload).then((json) => {
+                            axios.post(`${BASE_API_URL}/api/create-product`, payload).then((json) => {
                                 recalldata(json.data.Product)
                                 setloader(false)
                                 setPrice(0)

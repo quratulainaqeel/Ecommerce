@@ -4,6 +4,7 @@ import ModalLoader from './ModalLoader';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AiOutlineEdit } from 'react-icons/ai'
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function UpdateOrderModal({ recalldata, order, orderStatus }) {
 
@@ -28,7 +29,7 @@ export default function UpdateOrderModal({ recalldata, order, orderStatus }) {
             _id: order,
             status: status
         }
-        axios.put('http://localhost:4000/api/update-order', payload)
+        axios.put(`${BASE_API_URL}/api/update-order`, payload)
             .then((json) => {
                 recalldata(json.data.Order);
                 setloader(false);

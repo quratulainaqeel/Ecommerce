@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBorderAll } from '@fortawesome/free-solid-svg-icons';
+import { BASE_API_URL } from '../../Api.Config';
 
 export default function Navigationbar() {
 
@@ -17,7 +18,7 @@ export default function Navigationbar() {
     const [categories, setcategories] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/get-all-category').then(json => setcategories(json.data.Category)).catch((err) => console.log(err))
+        axios.get(`${BASE_API_URL}/api/get-all-category`).then(json => setcategories(json.data.Category)).catch((err) => console.log(err))
     }, [])
 
     return (

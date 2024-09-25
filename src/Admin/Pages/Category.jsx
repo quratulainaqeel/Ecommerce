@@ -4,6 +4,7 @@ import axios from 'axios'
 import PagesLoader from '../Components/PagesLoader'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import UpdateModal from '../Components/UpdateCategoryModal'
+import { BASE_API_URL } from '../../Api.Config'
 
 export default function Category() {
 
@@ -11,7 +12,7 @@ export default function Category() {
   const [loader, setloader] = useState(true)
  
   useEffect(() => {
-    axios.get('http://localhost:4000/api/get-all-category')
+    axios.get(`S{BASE_API_URL}/api/get-all-category`)
       .then((json) => {
         setcategory(json.data.Category)
         setloader(false)
@@ -20,7 +21,7 @@ export default function Category() {
   }, [])
 
   const deleteCategory = (_id) => {
-    axios.delete('http://localhost:4000/api/delete-category', { data: { _id } })
+    axios.delete(`S{BASE_API_URL}/api/delete-category`, { data: { _id } })
       .then(json => {
         setcategory(json.data.Category)
       })

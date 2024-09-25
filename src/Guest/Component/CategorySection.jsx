@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { Link, json } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import { BiCategoryAlt } from 'react-icons/bi'
+import { BASE_API_URL } from '../../Api.Config'
 
 export default function CategorySection() {
 
     const [categories, setcategories] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:4000/api/get-all-category').then(json => setcategories(json.data.Category))
+        axios.get(`${BASE_API_URL}/api/get-all-category`).then(json => setcategories(json.data.Category))
     }, [])
 
     return (
