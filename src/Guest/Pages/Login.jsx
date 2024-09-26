@@ -17,7 +17,7 @@ export default function Login() {
     const handleFormSubmission = (e) => {
         e.preventDefault();
 
-        axios.get(`${BASE_API_URL}0/api/get-all-user`)
+        axios.get(`${BASE_API_URL}/api/get-all-user`)
             .then((json) => {
                 const users = json.data.User;
 
